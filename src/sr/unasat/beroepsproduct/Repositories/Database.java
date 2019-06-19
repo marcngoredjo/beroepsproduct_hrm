@@ -8,7 +8,7 @@ public class Database {
     public Connection connect() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/beroepsproduct";
         String uname = "root";
-        String pass = "timpocovalen";
+        String pass = "";
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
