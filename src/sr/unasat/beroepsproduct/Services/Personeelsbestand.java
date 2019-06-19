@@ -17,12 +17,12 @@ public class Personeelsbestand {
 
         if (menuOptie == 2){
             Werknemer read = new Werknemer();
-            read.Read();
-
+            read.read();
         }
+
         if (menuOptie == 1){
             Werknemer create = new Werknemer();
-            create.Create();
+            create.create();
         }
 
         if (menuOptie == 4){
