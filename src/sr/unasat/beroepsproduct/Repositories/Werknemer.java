@@ -85,7 +85,7 @@ public class Werknemer {
         while(afdeling_rs.next()) {
             String test = afdeling_rs.getInt("afdeling_id")
                     + ":   " + afdeling_rs.getString("afdelingnaam")
-                    + ":   " + afdeling_rs.getFloat("locatie");
+                    + ":   " + afdeling_rs.getString("locatie");
             System.out.println(test);
         }
         System.out.println();
@@ -120,7 +120,7 @@ public class Werknemer {
         System.out.println("Typ hieronder de personeelsnummer van de persoon wiens record u wilt oproepen");
         int personeelsNummer = myObj.nextInt();
 
-        String query = "select * from werknemer join afdeling on werknemer.afdeling_id = afdeling.afdeling_id join functie on werknemer.functie_id = functie.functie_id where werknemer_id = " + personeelsNummer;
+        String query = "select * from werknemer join afdeling on werknemer.afdeling_id = afdeling.afdeling_id join functie on werknemer.functie_id = functie.functie_id where personeelsnr = " + personeelsNummer;
 
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(query);
@@ -159,9 +159,43 @@ public class Werknemer {
         System.out.println("Typ hieronder de personeelsnummer");
         int personeelsNummer = myObj.nextInt();
 
+/**
+ * Bewijs beschikbare afdelingen in het systeem
+ */
+        Statement afdeling_st = con.createStatement();
+        ResultSet afdeling_rs = afdeling_st.executeQuery("select * from afdeling");
+
+        System.out.println("Afdeling ID || Afdeling naam || Afdeling");
+        while(afdeling_rs.next()) {
+            String test = afdeling_rs.getInt("afdeling_id")
+                    + ":   " + afdeling_rs.getString("afdelingnaam")
+                    + ":   " + afdeling_rs.getString("locatie");
+            System.out.println(test);
+        }
+        System.out.println();
+        /** --- **/
+
+
         Scanner myObj1 = new Scanner(System.in);
         System.out.println("Typ hieronder de afdeling_id");
         int afdeling = myObj.nextInt();
+
+
+        /**
+         * Bewijs beschikbare functies in het systeem
+         */
+        Statement functie_st = con.createStatement();
+        ResultSet functie_rs = functie_st.executeQuery("select * from functie");
+
+        System.out.println("Functie ID || Naam || Salaris");
+        while(functie_rs.next()) {
+            String test = functie_rs.getInt("functie_id")
+                    + ":   " + functie_rs.getString("naam")
+                    + ":   " + functie_rs.getFloat("salaris");
+            System.out.println(test);
+        }
+        System.out.println();
+        /** --- **/
 
         Scanner myObj2 = new Scanner(System.in);
         System.out.println("Typ hieronder de functie_id");
@@ -178,11 +212,29 @@ public class Werknemer {
         Database database = new Database();
         Connection con = database.connect();
 
+        /**
+         * Bewijs bestaande medewerkers in het systeem
+         */
+        Statement werknemer_st = con.createStatement();
+        ResultSet functie_rs = werknemer_st.executeQuery("select * from werknemer");
+
+        System.out.println("personeelsnr || Voornaam || Familienaam");
+        while(functie_rs.next()) {
+            String test = functie_rs.getInt("personeelsnr")
+                    + ":   " + functie_rs.getString("voornaam")
+                    + ":   " + functie_rs.getString("familienaam");
+            System.out.println(test);
+        }
+        System.out.println();
+        /** --- **/
+
+
         Scanner myObj = new Scanner(System.in);
-        System.out.println("Typ hieronder de werknemer_id van de persoon die uit het systeem moet worden gewist");
+        System.out.println("Typ hieronder de personeelsnummer van de persoon die uit het systeem moet worden gewist");
         int personeelsNummer = myObj.nextInt();
 
-        String query = "delete from werknemer where werknemer_id=" + personeelsNummer;
+
+        String query = "delete from werknemer where personeelsnr=" + personeelsNummer;
 
         Statement st = con.createStatement();
         int count = st.executeUpdate(query);

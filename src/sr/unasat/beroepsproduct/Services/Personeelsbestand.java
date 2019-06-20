@@ -29,5 +29,11 @@ public class Personeelsbestand {
             Werknemer delete = new Werknemer();
             delete.delete();
         }
+
+        if (menuOptie == 3){
+            Werknemer update = new Werknemer();
+            update.update();
+
+        }
     }
 }
