@@ -201,7 +201,7 @@ public class Werknemer {
         System.out.println("Typ hieronder de functie_id");
         int functie = myObj.nextInt();
 
-        String query = "update werknemer set functie_id=" + functie + ", afdeling_id=" + afdeling + " "+"where werknemer_id=" +personeelsNummer;
+        String query = "update werknemer set functie_id=" + functie + ", afdeling_id=" + afdeling + " "+"where personeelsnr=" +personeelsNummer;
 
         Statement st = con.createStatement();
         int count = st.executeUpdate(query);
